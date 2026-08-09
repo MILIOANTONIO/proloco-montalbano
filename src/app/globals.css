@@ -1,0 +1,161 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-display: "Manrope", system-ui, sans-serif;
+  --font-sans: "Manrope", system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #f6f4ef;
+  color: #16241c;
+  font-family: var(--font-sans);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ---------- Animazione di apertura (logo Pro Loco) ---------- */
+.intro-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(60% 60% at 50% 40%, rgba(180, 210, 190, 0.55) 0%, rgba(246, 244, 239, 0) 70%),
+    #f6f4ef;
+  cursor: pointer;
+  animation: introOverlayOut 700ms ease-in 2.1s forwards;
+}
+.intro-mark-wrap {
+  position: relative;
+  display: inline-block;
+}
+.intro-mark {
+  width: min(46vw, 200px);
+  height: auto;
+  display: block;
+  border-radius: 9999px;
+  opacity: 0;
+  transform: scale(0.82);
+  clip-path: circle(0% at 50% 50%);
+  animation:
+    introReveal 750ms cubic-bezier(0.65, 0, 0.35, 1) 150ms forwards,
+    introMarkFade 10ms linear 150ms forwards;
+}
+.intro-ripple {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  border: 2px solid #2e6e4e;
+  transform: translate(-50%, -50%) scale(0.7);
+  opacity: 0;
+  animation: introRipple 900ms ease-out 850ms forwards;
+}
+.intro-tagline {
+  margin-top: 22px;
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: #1a452f;
+  opacity: 0;
+  animation: introTagline 700ms ease-out 1050ms forwards;
+}
+
+@keyframes introReveal {
+  from {
+    clip-path: circle(0% at 50% 50%);
+    transform: scale(0.82);
+  }
+  to {
+    clip-path: circle(75% at 50% 50%);
+    transform: scale(1);
+  }
+}
+@keyframes introMarkFade {
+  to {
+    opacity: 1;
+  }
+}
+@keyframes introRipple {
+  0% {
+    opacity: 0.5;
+    transform: translate(-50%, -50%) scale(0.7);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.6);
+  }
+}
+@keyframes introTagline {
+  from {
+    opacity: 0;
+    letter-spacing: 0.5em;
+  }
+  to {
+    opacity: 1;
+    letter-spacing: 0.3em;
+  }
+}
+@keyframes introOverlayOut {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.intro-overlay.is-skipped {
+  animation: introOverlayOut 350ms ease-in forwards !important;
+}
+.intro-overlay.is-skipped .intro-mark {
+  animation: none !important;
+  opacity: 1 !important;
+  transform: scale(1) !important;
+  clip-path: circle(75% at 50% 50%) !important;
+}
+.intro-overlay.is-skipped .intro-ripple {
+  animation: none !important;
+  opacity: 0 !important;
+}
+.intro-overlay.is-skipped .intro-tagline {
+  animation: none !important;
+  opacity: 1 !important;
+  letter-spacing: 0.3em !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro-overlay {
+    animation: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro-video-overlay {
+    display: none !important;
+  }
+}

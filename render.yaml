@@ -1,0 +1,35 @@
+services:
+  - type: web
+    name: proloco-montalbano
+    runtime: node
+    plan: free
+    rootDir: proloco-montalbano
+    buildCommand: "npm install && npm run build"
+    startCommand: "npm run start"
+    envVars:
+      - key: NODE_VERSION
+        value: 22.18.1
+      - key: DATABASE_URL
+        value: "file:/opt/render/project/src/proloco-montalbano/data/db.sqlite"
+      - key: UPLOADS_DIR
+        value: /opt/render/project/src/proloco-montalbano/data/uploads
+      - key: SESSION_SECRET
+        sync: false
+      - key: SEED_ADMIN_EMAIL
+        sync: false
+      - key: SEED_ADMIN_PASSWORD
+        sync: false
+      - key: VAPID_PUBLIC_KEY
+        sync: false
+      - key: VAPID_PRIVATE_KEY
+        sync: false
+      - key: VAPID_CONTACT_EMAIL
+        sync: false
+      - key: NEXT_PUBLIC_VAPID_PUBLIC_KEY
+        sync: false
+      - key: NEXT_PUBLIC_SITE_URL
+        value: https://proloco-montalbano.onrender.com
+    disk:
+      name: proloco-montalbano-data
+      mountPath: /opt/render/project/src/proloco-montalbano/data
+      sizeGB: 1

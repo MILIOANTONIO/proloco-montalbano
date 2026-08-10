@@ -9,15 +9,15 @@ export default async function AdminActivitiesPage() {
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-wrap items-center justify-between gap-3">
         <h1 className="text-xl font-bold text-gray-800">Attività locali ({activities.length})</h1>
         <Link href="/admin/attivita/new" className="rounded bg-gray-800 px-4 py-2 text-sm font-medium text-white">
           + Nuova attività
         </Link>
       </div>
 
-      <div className="overflow-hidden rounded-xl border border-gray-200 bg-white">
-        <table className="w-full text-sm">
+      <div className="overflow-x-auto rounded-xl border border-gray-200 bg-white">
+        <table className="w-full min-w-[560px] text-sm">
           <thead className="bg-gray-50 text-left text-gray-500">
             <tr>
               <th className="px-4 py-2">Ordine</th>

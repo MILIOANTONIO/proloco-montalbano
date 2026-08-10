@@ -6,6 +6,13 @@ import IntroAnimation from "@/components/IntroAnimation";
 import AudioCoordinator from "@/components/AudioCoordinator";
 import PageViewTracker from "@/components/PageViewTracker";
 
+const privacyLinkLabel: Record<Locale, string> = {
+  it: "Informativa sulla privacy",
+  en: "Privacy Policy",
+  es: "Política de privacidad",
+  fr: "Politique de confidentialité",
+};
+
 export function generateStaticParams() {
   return [{ locale: "it" }, { locale: "en" }, { locale: "es" }, { locale: "fr" }];
 }
@@ -39,6 +46,11 @@ export default async function LocaleLayout({
         </div>
         <p className="mt-4 text-xs">
           © {new Date().getFullYear()} Pro Loco Montalbano Elicona APS — Piazza Maria SS della Provvidenza, 98065 Montalbano Elicona (ME)
+        </p>
+        <p className="mt-2 text-xs">
+          <a href={`/${locale}/privacy`} className="underline decoration-brand-400 underline-offset-2 hover:text-brand-900 dark:hover:text-brand-100">
+            {privacyLinkLabel[locale]}
+          </a>
         </p>
       </footer>
     </>

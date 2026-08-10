@@ -1,5 +1,11 @@
 import "./globals.css";
 import type { Metadata, Viewport } from "next";
+import { Manrope } from "next/font/google";
+
+// Font autoospitato (nessuna richiesta al momento della visita verso i server Google, che
+// trasferirebbe l'IP del visitatore fuori UE) — il Garante Privacy italiano ha sanzionato
+// piu' siti per il caricamento diretto di Google Fonts via CDN senza consenso.
+const manrope = Manrope({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"], variable: "--font-manrope" });
 
 export const metadata: Metadata = {
   title: "Montalbano Elicona",
@@ -22,7 +28,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="it" suppressHydrationWarning>
+    <html lang="it" suppressHydrationWarning className={manrope.variable}>
       <head>
         <script
           dangerouslySetInnerHTML={{

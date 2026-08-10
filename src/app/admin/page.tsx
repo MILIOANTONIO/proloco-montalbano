@@ -2,6 +2,7 @@ import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import VisitsChart from "@/components/admin/VisitsChart";
 import StatBars from "@/components/admin/StatBars";
+import CollapsibleCard from "@/components/admin/CollapsibleCard";
 
 export const dynamic = "force-dynamic";
 
@@ -109,31 +110,32 @@ export default async function AdminDashboard() {
         </div>
 
         <div className="mt-4 grid gap-4 lg:grid-cols-3">
-          <div className="rounded-xl border border-gray-200 bg-white p-4 lg:col-span-2">
-            <p className="mb-2 text-sm font-medium text-gray-700">Visite giornaliere (ultimi 14 giorni)</p>
-            {stats.viewsTotal === 0 ? (
-              <p className="py-8 text-center text-sm text-gray-400">Nessuna visita registrata ancora.</p>
-            ) : (
-              <VisitsChart data={stats.daily} />
-            )}
+          <div className="lg:col-span-2">
+            <CollapsibleCard title="Visite giornaliere" subtitle="Ultimi 14 giorni">
+              {stats.viewsTotal === 0 ? (
+                <p className="py-8 text-center text-sm text-gray-400">Nessuna visita registrata ancora.</p>
+              ) : (
+                <VisitsChart data={stats.daily} />
+              )}
+            </CollapsibleCard>
           </div>
-          <div className="rounded-xl border border-gray-200 bg-white p-4">
-            <p className="mb-3 text-sm font-medium text-gray-700">Lingue (ultimi 30 giorni)</p>
+          <CollapsibleCard title="Lingue" subtitle="Ultimi 30 giorni">
             {stats.localeBreakdown.length === 0 ? (
               <p className="py-8 text-center text-sm text-gray-400">Nessun dato.</p>
             ) : (
               <StatBars items={stats.localeBreakdown} />
             )}
-          </div>
+          </CollapsibleCard>
         </div>
 
-        <div className="mt-4 rounded-xl border border-gray-200 bg-white p-4">
-          <p className="mb-3 text-sm font-medium text-gray-700">Pagine più visitate (ultimi 30 giorni)</p>
-          {stats.topPages.length === 0 ? (
-            <p className="py-8 text-center text-sm text-gray-400">Nessun dato.</p>
-          ) : (
-            <StatBars items={stats.topPages} />
-          )}
+        <div className="mt-4">
+          <CollapsibleCard title="Pagine più visitate" subtitle="Ultimi 30 giorni" defaultOpen={false}>
+            {stats.topPages.length === 0 ? (
+              <p className="py-8 text-center text-sm text-gray-400">Nessun dato.</p>
+            ) : (
+              <StatBars items={stats.topPages} />
+            )}
+          </CollapsibleCard>
         </div>
       </section>
 

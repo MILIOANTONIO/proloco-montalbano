@@ -112,7 +112,7 @@ export default function PoiForm({
     <form onSubmit={handleSubmit} className="space-y-6">
       {error && <p className="rounded bg-red-50 px-3 py-2 text-sm text-red-700">{error}</p>}
 
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div>
           <label className="mb-1 block text-sm font-medium text-gray-700">Slug (URL)</label>
           <input
@@ -150,7 +150,7 @@ export default function PoiForm({
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div>
           <label className="mb-1 block text-sm font-medium text-gray-700">Latitudine (opzionale)</label>
           <input

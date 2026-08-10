@@ -76,7 +76,6 @@ export default function NavBar({ locale }: { locale: Locale }) {
         {/* Toggle mobile */}
         <div className="flex items-center gap-2 xl:hidden">
           <LocaleSwitcher current={locale} />
-          <ThemeToggle />
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
@@ -111,6 +110,10 @@ export default function NavBar({ locale }: { locale: Locale }) {
               </Link>
             );
           })}
+          <div className="mt-1 flex items-center justify-between rounded-xl border-t border-brand-200/70 px-3 pt-3 text-sm font-medium text-brand-800 dark:border-brand-700/70 dark:text-brand-200">
+            <span>Tema</span>
+            <ThemeToggle />
+          </div>
         </div>
       </nav>
     </header>

@@ -33,21 +33,21 @@ export default async function NewsDetailPage({ params }: { params: Promise<{ loc
           <Link
             href={`/${locale}/news`}
             aria-label={t.news.title}
-            className="absolute left-4 top-4 flex h-10 w-10 items-center justify-center rounded-full bg-white/90 text-brand-800 shadow-sm backdrop-blur-sm transition-colors hover:bg-white"
+            className="absolute left-4 top-4 flex h-10 w-10 items-center justify-center rounded-full bg-white/90 dark:bg-brand-900/90 text-brand-800 dark:text-brand-200 shadow-sm backdrop-blur-sm transition-colors hover:bg-white"
           >
             <ChevronLeftIcon className="h-5 w-5" />
           </Link>
         </div>
       ) : (
-        <Link href={`/${locale}/news`} className="inline-flex items-center gap-1 text-sm font-medium text-brand-600 hover:text-brand-800">
+        <Link href={`/${locale}/news`} className="inline-flex items-center gap-1 text-sm font-medium text-brand-600 dark:text-brand-300 hover:text-brand-800">
           <ChevronLeftIcon className="h-4 w-4" />
           {t.news.title}
         </Link>
       )}
-      <p className="text-xs font-semibold uppercase tracking-wide text-olive-600">{formatDate(post.publishedAt, locale)}</p>
-      <h1 className="font-display text-3xl font-extrabold tracking-tight text-brand-900">{tr.title}</h1>
+      <p className="text-xs font-semibold uppercase tracking-wide text-olive-600 dark:text-olive-400">{formatDate(post.publishedAt, locale)}</p>
+      <h1 className="font-display text-3xl font-extrabold tracking-tight text-brand-900 dark:text-brand-100">{tr.title}</h1>
 
-      <p className="whitespace-pre-line text-[17px] leading-relaxed text-brand-900/90">{tr.body}</p>
+      <p className="whitespace-pre-line text-[17px] leading-relaxed text-brand-900/90 dark:text-brand-100/90">{tr.body}</p>
     </article>
   );
 }

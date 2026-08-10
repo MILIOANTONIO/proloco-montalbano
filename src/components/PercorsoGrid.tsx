@@ -46,7 +46,7 @@ export default function PercorsoGrid({
             type="button"
             onClick={() => setActive(null)}
             className={`shrink-0 rounded-full px-4 py-1.5 text-sm font-medium transition-colors duration-200 ${
-              active === null ? "bg-brand-700 text-cream" : "border border-brand-200 bg-white text-brand-700 hover:bg-brand-100"
+              active === null ? "bg-brand-700 text-cream" : "border border-brand-200 dark:border-brand-700 bg-white dark:bg-brand-900 text-brand-700 dark:text-brand-300 hover:bg-brand-100"
             }`}
           >
             {filterAllLabel}
@@ -59,7 +59,7 @@ export default function PercorsoGrid({
                 type="button"
                 onClick={() => setActive(cat)}
                 className={`flex shrink-0 items-center gap-1.5 rounded-full px-4 py-1.5 text-sm font-medium transition-colors duration-200 ${
-                  active === cat ? "bg-brand-700 text-cream" : "border border-brand-200 bg-white text-brand-700 hover:bg-brand-100"
+                  active === cat ? "bg-brand-700 text-cream" : "border border-brand-200 dark:border-brand-700 bg-white dark:bg-brand-900 text-brand-700 dark:text-brand-300 hover:bg-brand-100"
                 }`}
               >
                 <Icon className="h-4 w-4" />
@@ -89,14 +89,14 @@ export default function PercorsoGrid({
                   />
                 ) : (
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <Icon className="h-14 w-14 text-brand-600" />
+                    <Icon className="h-14 w-14 text-brand-600 dark:text-brand-300" />
                   </div>
                 )}
 
                 {/* scrim per leggibilità testo */}
                 <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/10 to-transparent" />
 
-                <span className="absolute left-3 top-3 flex h-8 w-8 items-center justify-center rounded-full bg-white/85 text-xs font-bold text-brand-800 shadow-sm backdrop-blur-sm">
+                <span className="absolute left-3 top-3 flex h-8 w-8 items-center justify-center rounded-full bg-white/85 dark:bg-brand-900/85 text-xs font-bold text-brand-800 dark:text-brand-200 shadow-sm backdrop-blur-sm">
                   {String(orderIndex + 1).padStart(2, "0")}
                 </span>
                 <span className="absolute right-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-brand-600 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-cream shadow-sm">

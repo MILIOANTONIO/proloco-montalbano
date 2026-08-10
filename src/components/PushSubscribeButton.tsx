@@ -69,7 +69,7 @@ export default function PushSubscribeButton({ locale }: { locale: Locale }) {
     <button
       onClick={subscribe}
       disabled={status === "enabled"}
-      className="w-full cursor-pointer rounded-full border border-brand-400 bg-white px-4 py-2.5 text-sm font-medium text-brand-800 transition-colors duration-200 hover:bg-brand-50 disabled:cursor-not-allowed disabled:opacity-60"
+      className="w-full cursor-pointer rounded-full border border-brand-400 dark:border-brand-600 bg-white dark:bg-brand-900 px-4 py-2.5 text-sm font-medium text-brand-800 dark:text-brand-200 transition-colors duration-200 hover:bg-brand-50 disabled:cursor-not-allowed disabled:opacity-60"
     >
       {status === "enabled" ? t.push.enabled : status === "denied" ? t.push.denied : t.push.enable}
     </button>

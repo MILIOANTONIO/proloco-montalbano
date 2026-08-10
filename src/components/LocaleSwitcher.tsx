@@ -16,7 +16,7 @@ export default function LocaleSwitcher({ current }: { current: Locale }) {
     <select
       value={current}
       onChange={(e) => switchTo(e.target.value)}
-      className="ml-1 shrink-0 cursor-pointer rounded-full border border-brand-300 bg-white px-2.5 py-1.5 text-sm text-brand-900 transition-colors hover:border-brand-500"
+      className="ml-1 shrink-0 cursor-pointer rounded-full border border-brand-300 dark:border-brand-700 bg-white dark:bg-brand-900 px-2.5 py-1.5 text-sm text-brand-900 dark:text-brand-100 transition-colors hover:border-brand-500"
       aria-label="Lingua / Language"
     >
       {locales.map((l) => (

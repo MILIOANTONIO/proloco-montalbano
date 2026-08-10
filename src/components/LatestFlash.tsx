@@ -36,9 +36,9 @@ export default function LatestFlash({
   }
 
   return (
-    <div className="relative flex items-center gap-3 overflow-hidden rounded-2xl border border-brand-200 bg-white p-2.5 pr-9 shadow-sm">
+    <div className="relative flex items-center gap-3 overflow-hidden rounded-2xl border border-brand-200 dark:border-brand-700 bg-white dark:bg-brand-900 p-2.5 pr-9 shadow-sm">
       <Link href={href} className="flex flex-1 items-center gap-3 min-w-0">
-        <div className="h-14 w-14 shrink-0 overflow-hidden rounded-xl bg-brand-100">
+        <div className="h-14 w-14 shrink-0 overflow-hidden rounded-xl bg-brand-100 dark:bg-brand-800">
           {image ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img src={image} alt="" className="h-full w-full object-cover" />
@@ -58,10 +58,10 @@ export default function LatestFlash({
           )}
         </div>
         <div className="min-w-0">
-          <span className="inline-block rounded-full bg-olive-400/20 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-olive-600">
+          <span className="inline-block rounded-full bg-olive-400/20 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-olive-600 dark:text-olive-400">
             {badgeLabel}
           </span>
-          <p className="mt-0.5 truncate font-display text-sm font-bold text-brand-900">{title}</p>
+          <p className="mt-0.5 truncate font-display text-sm font-bold text-brand-900 dark:text-brand-100">{title}</p>
         </div>
       </Link>
       <button

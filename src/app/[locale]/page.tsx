@@ -72,14 +72,14 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
   const sections: Record<HomepageSection, React.ReactNode> = {
     award: (
-      <span className="inline-flex items-start gap-2 rounded-full bg-olive-400/20 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-olive-600">
+      <span className="inline-flex items-start gap-2 rounded-full bg-olive-400/20 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-olive-600 dark:text-olive-400">
         <AwardIcon className="h-4 w-4 shrink-0 mt-0.5" />
         {t.home.award}
       </span>
     ),
     about: (
-      <section className="rounded-3xl border border-brand-200 bg-white p-6 shadow-sm sm:p-8">
-        <p className="text-[17px] leading-relaxed text-brand-900/90">{t.home.about}</p>
+      <section className="rounded-3xl border border-brand-200 dark:border-brand-700 bg-white dark:bg-brand-900 p-6 shadow-sm sm:p-8">
+        <p className="text-[17px] leading-relaxed text-brand-900/90 dark:text-brand-100/90">{t.home.about}</p>
         <a
           href={RAIPLAY_URL}
           target="_blank"
@@ -108,7 +108,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
               className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/25 to-ink/10" />
-            <span className="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-xl bg-white/20 text-white backdrop-blur-sm">
+            <span className="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-xl bg-white/20 dark:bg-brand-900/20 text-white backdrop-blur-sm">
               <c.Icon className="h-4.5 w-4.5" />
             </span>
             <span className="relative z-10 p-4 font-display text-lg font-bold leading-tight text-white drop-shadow-sm">
@@ -130,7 +130,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       />
     ),
     install: (
-      <section className="rounded-3xl bg-brand-100/60 p-5 text-sm text-brand-800">
+      <section className="rounded-3xl bg-brand-100/60 dark:bg-brand-800/60 p-5 text-sm text-brand-800 dark:text-brand-200">
         <p>{t.home.installHint}</p>
         <InstallPwaButton label={t.home.installButton} />
       </section>
@@ -143,9 +143,9 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
       <section className="text-center">
         {visible.award && order.includes("award") && <div className="mb-3">{sections.award}</div>}
-        <p className="font-display text-lg font-semibold tracking-wide text-brand-500">{t.home.welcome}</p>
-        <h1 className="mt-1 font-display text-4xl font-extrabold tracking-tight text-brand-900 sm:text-5xl">{t.home.title}</h1>
-        <p className="mx-auto mt-4 max-w-xl text-brand-800/90">{t.home.subtitle}</p>
+        <p className="font-display text-lg font-semibold tracking-wide text-brand-500 dark:text-brand-400">{t.home.welcome}</p>
+        <h1 className="mt-1 font-display text-4xl font-extrabold tracking-tight text-brand-900 dark:text-brand-100 sm:text-5xl">{t.home.title}</h1>
+        <p className="mx-auto mt-4 max-w-xl text-brand-800/90 dark:text-brand-200/90">{t.home.subtitle}</p>
       </section>
 
       {flashItem && (

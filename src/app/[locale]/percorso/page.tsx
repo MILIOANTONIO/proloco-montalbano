@@ -25,12 +25,12 @@ export default async function PercorsoPage({ params }: { params: Promise<{ local
   return (
     <div className="space-y-6">
       <div className="max-w-2xl">
-        <h1 className="font-display text-3xl font-bold text-brand-900">{t.percorso.title}</h1>
-        <p className="mt-2 text-brand-700">{t.percorso.intro}</p>
+        <h1 className="font-display text-3xl font-bold text-brand-900 dark:text-brand-100">{t.percorso.title}</h1>
+        <p className="mt-2 text-brand-700 dark:text-brand-300">{t.percorso.intro}</p>
       </div>
 
       {cards.length === 0 ? (
-        <p className="text-brand-600">{t.percorso.empty}</p>
+        <p className="text-brand-600 dark:text-brand-300">{t.percorso.empty}</p>
       ) : (
         <PercorsoGrid locale={locale} pois={cards} categoryLabels={t.poi.categories} filterAllLabel={t.poi.filterAll} />
       )}

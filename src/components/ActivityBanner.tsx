@@ -58,7 +58,7 @@ export default function ActivityBanner({
 
       <div className="relative z-10 flex h-full flex-col justify-end p-6 sm:p-10">
         <h2 className="font-display text-2xl font-extrabold leading-tight text-white drop-shadow-sm sm:text-4xl">{subtitle}</h2>
-        <p className="mt-3 inline-flex w-fit items-center gap-2 rounded-full bg-cream px-4 py-2.5 text-sm font-semibold text-brand-900 transition-colors duration-200 group-hover:bg-white">
+        <p className="mt-3 inline-flex w-fit items-center gap-2 rounded-full bg-cream dark:bg-brand-900 px-4 py-2.5 text-sm font-semibold text-brand-900 dark:text-brand-100 transition-colors duration-200 group-hover:bg-white">
           <StoreIcon className="h-4 w-4" />
           {cta}
         </p>

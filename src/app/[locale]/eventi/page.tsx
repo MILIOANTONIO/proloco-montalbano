@@ -32,7 +32,7 @@ export default async function EventiPage({ params }: { params: Promise<{ locale:
           return (
             <li
               key={ev.id}
-              className="overflow-hidden rounded-3xl bg-white shadow-md transition-shadow duration-300 hover:shadow-xl"
+              className="overflow-hidden rounded-3xl bg-white dark:bg-brand-900 shadow-md transition-shadow duration-300 hover:shadow-xl"
             >
               {(() => {
                 const mobileSrc = ev.coverVideoMobile || ev.coverVideoDesktop;
@@ -65,13 +65,13 @@ export default async function EventiPage({ params }: { params: Promise<{ locale:
                   <span className="font-display text-xl font-extrabold leading-none">{d.getDate()}</span>
                 </div>
                 <div className="min-w-0">
-                  <p className="font-display text-lg font-bold text-brand-900">{tr.title}</p>
+                  <p className="font-display text-lg font-bold text-brand-900 dark:text-brand-100">{tr.title}</p>
                   {ev.location && (
-                    <p className="mt-0.5 flex items-center gap-1.5 text-sm text-brand-600">
+                    <p className="mt-0.5 flex items-center gap-1.5 text-sm text-brand-600 dark:text-brand-300">
                       <PinIcon className="h-4 w-4" /> {ev.location}
                     </p>
                   )}
-                  <p className="mt-1 whitespace-pre-line text-sm text-brand-700">{tr.description}</p>
+                  <p className="mt-1 whitespace-pre-line text-sm text-brand-700 dark:text-brand-300">{tr.description}</p>
                 </div>
               </div>
             </li>
@@ -83,20 +83,20 @@ export default async function EventiPage({ params }: { params: Promise<{ locale:
 
   return (
     <div className="mx-auto max-w-2xl space-y-8">
-      <h1 className="font-display text-3xl font-extrabold tracking-tight text-brand-900">{t.eventi.title}</h1>
+      <h1 className="font-display text-3xl font-extrabold tracking-tight text-brand-900 dark:text-brand-100">{t.eventi.title}</h1>
       {events.length === 0 ? (
-        <p className="text-brand-600">{t.eventi.empty}</p>
+        <p className="text-brand-600 dark:text-brand-300">{t.eventi.empty}</p>
       ) : (
         <>
           {upcoming.length > 0 && (
             <section>
-              <h2 className="mb-3 font-display text-lg font-bold text-brand-800">{t.eventi.upcoming}</h2>
+              <h2 className="mb-3 font-display text-lg font-bold text-brand-800 dark:text-brand-200">{t.eventi.upcoming}</h2>
               {renderList(upcoming)}
             </section>
           )}
           {past.length > 0 && (
             <section>
-              <h2 className="mb-3 font-display text-lg font-bold text-brand-800">{t.eventi.past}</h2>
+              <h2 className="mb-3 font-display text-lg font-bold text-brand-800 dark:text-brand-200">{t.eventi.past}</h2>
               {renderList(past)}
             </section>
           )}

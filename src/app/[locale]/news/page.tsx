@@ -20,9 +20,9 @@ export default async function NewsPage({ params }: { params: Promise<{ locale: s
 
   return (
     <div className="mx-auto max-w-2xl space-y-6">
-      <h1 className="font-display text-3xl font-extrabold tracking-tight text-brand-900">{t.news.title}</h1>
+      <h1 className="font-display text-3xl font-extrabold tracking-tight text-brand-900 dark:text-brand-100">{t.news.title}</h1>
       {posts.length === 0 ? (
-        <p className="text-brand-600">{t.news.empty}</p>
+        <p className="text-brand-600 dark:text-brand-300">{t.news.empty}</p>
       ) : (
         <ul className="space-y-3">
           {posts.map((p) => {
@@ -32,17 +32,17 @@ export default async function NewsPage({ params }: { params: Promise<{ locale: s
               <li key={p.id}>
                 <Link
                   href={`/${locale}/news/${p.id}`}
-                  className="flex items-center gap-4 rounded-3xl bg-white p-4 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
+                  className="flex items-center gap-4 rounded-3xl bg-white dark:bg-brand-900 p-4 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
                 >
                   {p.coverImage && (
-                    <div className="h-16 w-16 shrink-0 overflow-hidden rounded-2xl bg-brand-100">
+                    <div className="h-16 w-16 shrink-0 overflow-hidden rounded-2xl bg-brand-100 dark:bg-brand-800">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img src={p.coverImage} alt="" className="h-full w-full object-cover" />
                     </div>
                   )}
                   <div className="min-w-0">
-                    <p className="text-xs font-semibold uppercase tracking-wide text-olive-600">{formatDate(p.publishedAt, locale)}</p>
-                    <p className="mt-1 font-display text-lg font-bold text-brand-900">{tr.title}</p>
+                    <p className="text-xs font-semibold uppercase tracking-wide text-olive-600 dark:text-olive-400">{formatDate(p.publishedAt, locale)}</p>
+                    <p className="mt-1 font-display text-lg font-bold text-brand-900 dark:text-brand-100">{tr.title}</p>
                   </div>
                 </Link>
               </li>

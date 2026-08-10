@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { getDictionary, type Locale } from "@/lib/i18n";
 import LocaleSwitcher from "./LocaleSwitcher";
+import ThemeToggle from "./ThemeToggle";
 import { MapIcon, InfoIcon, CalendarIcon, NewspaperIcon, ContactIcon, StoreIcon } from "./icons";
 
 function MenuIcon({ open }: { open: boolean }) {
@@ -42,7 +43,7 @@ export default function NavBar({ locale }: { locale: Locale }) {
   }, [pathname]);
 
   return (
-    <header className="sticky top-0 z-20 border-b border-brand-200/70 bg-cream/90 backdrop-blur-md">
+    <header className="sticky top-0 z-20 border-b border-brand-200/70 dark:border-brand-700/70 bg-cream/90 dark:bg-brand-900/90 backdrop-blur-md">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-1.5 sm:px-6 lg:px-8">
         <Link href={base} className="mr-2 flex shrink-0 items-center">
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -58,7 +59,7 @@ export default function NavBar({ locale }: { locale: Locale }) {
                 key={l.href}
                 href={l.href}
                 className={`flex shrink-0 items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-medium transition-colors duration-200 ${
-                  active ? "bg-brand-700 text-cream" : "text-brand-800 hover:bg-brand-100"
+                  active ? "bg-brand-700 text-cream" : "text-brand-800 dark:text-brand-200 hover:bg-brand-100"
                 }`}
               >
                 <l.Icon className="h-4 w-4" />
@@ -67,17 +68,19 @@ export default function NavBar({ locale }: { locale: Locale }) {
             );
           })}
           <LocaleSwitcher current={locale} />
+          <ThemeToggle />
         </nav>
 
         {/* Toggle mobile */}
         <div className="flex items-center gap-2 xl:hidden">
           <LocaleSwitcher current={locale} />
+          <ThemeToggle />
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
             aria-expanded={open}
             aria-label={open ? "Chiudi menu" : "Apri menu"}
-            className="flex h-10 w-10 shrink-0 cursor-pointer items-center justify-center rounded-full text-brand-800 transition-colors hover:bg-brand-100"
+            className="flex h-10 w-10 shrink-0 cursor-pointer items-center justify-center rounded-full text-brand-800 dark:text-brand-200 transition-colors hover:bg-brand-100"
           >
             <MenuIcon open={open} />
           </button>
@@ -86,7 +89,7 @@ export default function NavBar({ locale }: { locale: Locale }) {
 
       {/* Menu mobile a tendina */}
       <nav
-        className={`overflow-hidden border-t border-brand-200/70 bg-cream transition-[max-height] duration-300 ease-out xl:hidden ${
+        className={`overflow-hidden border-t border-brand-200/70 dark:border-brand-700/70 bg-cream dark:bg-brand-900 transition-[max-height] duration-300 ease-out xl:hidden ${
           open ? "max-h-96" : "max-h-0 border-t-0"
         }`}
       >
@@ -98,7 +101,7 @@ export default function NavBar({ locale }: { locale: Locale }) {
                 key={l.href}
                 href={l.href}
                 className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors duration-200 ${
-                  active ? "bg-brand-700 text-cream" : "text-brand-800 hover:bg-brand-100"
+                  active ? "bg-brand-700 text-cream" : "text-brand-800 dark:text-brand-200 hover:bg-brand-100"
                 }`}
               >
                 <l.Icon className="h-5 w-5" />

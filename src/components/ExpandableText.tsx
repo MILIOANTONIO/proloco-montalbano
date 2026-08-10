@@ -19,7 +19,7 @@ export default function ExpandableText({
   return (
     <div>
       <p
-        className="whitespace-pre-line text-[17px] leading-relaxed text-brand-900/90"
+        className="whitespace-pre-line text-[17px] leading-relaxed text-brand-900/90 dark:text-brand-100/90"
         style={
           expanded
             ? undefined
@@ -36,7 +36,7 @@ export default function ExpandableText({
       <button
         type="button"
         onClick={() => setExpanded((v) => !v)}
-        className="mt-2 inline-flex cursor-pointer items-center gap-1 text-sm font-medium text-brand-700 hover:text-brand-900"
+        className="mt-2 inline-flex cursor-pointer items-center gap-1 text-sm font-medium text-brand-700 dark:text-brand-300 hover:text-brand-900"
       >
         {expanded ? readLessLabel : readMoreLabel}
         <ChevronLeftIcon className={`h-4 w-4 transition-transform ${expanded ? "rotate-90" : "-rotate-90"}`} />

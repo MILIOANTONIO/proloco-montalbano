@@ -37,12 +37,12 @@ export default async function AttivitaPage({ params }: { params: Promise<{ local
   return (
     <div className="space-y-6">
       <div className="max-w-2xl">
-        <h1 className="font-display text-3xl font-bold text-brand-900">{t.attivita.title}</h1>
-        <p className="mt-2 text-brand-700">{t.attivita.intro}</p>
+        <h1 className="font-display text-3xl font-bold text-brand-900 dark:text-brand-100">{t.attivita.title}</h1>
+        <p className="mt-2 text-brand-700 dark:text-brand-300">{t.attivita.intro}</p>
       </div>
 
       {cards.length === 0 ? (
-        <p className="text-brand-600">{t.attivita.empty}</p>
+        <p className="text-brand-600 dark:text-brand-300">{t.attivita.empty}</p>
       ) : (
         <ActivityGrid
           activities={cards}

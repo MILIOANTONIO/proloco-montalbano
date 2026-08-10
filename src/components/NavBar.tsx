@@ -46,11 +46,11 @@ export default function NavBar({ locale }: { locale: Locale }) {
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-1.5 sm:px-6 lg:px-8">
         <Link href={base} className="flex shrink-0 items-center">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/brand/logo-horizontal.png" alt="Montalbano Elicona" className="h-9 w-auto sm:h-11" />
+          <img src="/brand/logo-horizontal.png" alt="Montalbano Elicona" className="h-8 w-auto sm:h-10" />
         </Link>
 
         {/* Nav desktop */}
-        <nav className="hidden flex-1 items-center justify-end gap-1 md:flex md:gap-2">
+        <nav className="hidden flex-1 items-center justify-end gap-1 xl:flex xl:gap-2">
           {links.map((l) => {
             const active = pathname?.startsWith(l.href);
             return (
@@ -70,7 +70,7 @@ export default function NavBar({ locale }: { locale: Locale }) {
         </nav>
 
         {/* Toggle mobile */}
-        <div className="flex items-center gap-2 md:hidden">
+        <div className="flex items-center gap-2 xl:hidden">
           <LocaleSwitcher current={locale} />
           <button
             type="button"
@@ -86,7 +86,7 @@ export default function NavBar({ locale }: { locale: Locale }) {
 
       {/* Menu mobile a tendina */}
       <nav
-        className={`overflow-hidden border-t border-brand-200/70 bg-cream transition-[max-height] duration-300 ease-out md:hidden ${
+        className={`overflow-hidden border-t border-brand-200/70 bg-cream transition-[max-height] duration-300 ease-out xl:hidden ${
           open ? "max-h-96" : "max-h-0 border-t-0"
         }`}
       >

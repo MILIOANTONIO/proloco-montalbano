@@ -179,3 +179,14 @@ model PushSubscription {
   locale    String   @default("it")
   createdAt DateTime @default(now())
 }
+
+// Visite alle pagine pubbliche, per le statistiche nella dashboard admin.
+model PageView {
+  id        String   @id @default(cuid())
+  path      String
+  locale    String
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
+  @@index([path])
+}

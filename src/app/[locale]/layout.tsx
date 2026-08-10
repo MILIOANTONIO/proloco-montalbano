@@ -4,6 +4,7 @@ import NavBar from "@/components/NavBar";
 import PwaRegister from "@/components/PwaRegister";
 import IntroAnimation from "@/components/IntroAnimation";
 import AudioCoordinator from "@/components/AudioCoordinator";
+import PageViewTracker from "@/components/PageViewTracker";
 
 export function generateStaticParams() {
   return [{ locale: "it" }, { locale: "en" }, { locale: "es" }, { locale: "fr" }];
@@ -22,6 +23,7 @@ export default async function LocaleLayout({
 
   return (
     <>
+      <PageViewTracker />
       <IntroAnimation />
       <AudioCoordinator />
       <PwaRegister />

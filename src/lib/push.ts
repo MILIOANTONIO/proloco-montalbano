@@ -59,7 +59,11 @@ export async function sendPushToAll({
         const statusCode = (err as { statusCode?: number })?.statusCode;
         const message = (err as { body?: string; message?: string })?.body || (err as Error)?.message;
         console.error(`[push] invio fallito verso ${new URL(sub.endpoint).host} (sub ${sub.id}, locale ${sub.locale}): status=${statusCode} ${message}`);
-        if (statusCode === 404 || statusCode === 410) stale.push(sub.id);
+        // 404/410: iscrizione scaduta. 403 con VAPID mismatch: iscrizione creata con chiavi VAPID
+        // diverse da quelle attuali del server (es. dopo una rigenerazione delle chiavi) — non
+        // potrà mai più funzionare finché il dispositivo non si iscrive di nuovo.
+        const vapidMismatch = statusCode === 403 && typeof message === "string" && message.includes("VAPID credentials");
+        if (statusCode === 404 || statusCode === 410 || vapidMismatch) stale.push(sub.id);
       }
     })
   );

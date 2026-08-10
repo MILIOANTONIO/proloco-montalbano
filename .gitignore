@@ -7,7 +7,7 @@ dist
 *.db
 *.db-journal
 prisma/dev.db
-uploads/
+/uploads/
 .DS_Store
 next-env.d.ts
 tsconfig.tsbuildinfo

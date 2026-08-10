@@ -46,7 +46,7 @@ export default function NavBar({ locale }: { locale: Locale }) {
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-1.5 sm:px-6 lg:px-8">
         <Link href={base} className="flex shrink-0 items-center">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/brand/logo-full.png" alt="Montalbano Elicona" className="h-16 w-auto sm:h-[4.5rem]" />
+          <img src="/brand/logo-horizontal.png" alt="Montalbano Elicona" className="h-9 w-auto sm:h-11" />
         </Link>
 
         {/* Nav desktop */}

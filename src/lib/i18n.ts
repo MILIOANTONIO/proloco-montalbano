@@ -23,6 +23,7 @@ type Dict = {
     about: string;
     watchVideo: string;
     installHint: string;
+    installButton: string;
     attivitaTitle: string;
     attivitaSubtitle: string;
     attivitaCta: string;
@@ -69,6 +70,7 @@ export const dictionaries: Record<Locale, Dict> = {
         "A 907 metri sui monti Nebrodi, tra boschi secolari e un castello che fu residenza reale, Montalbano Elicona è stato eletto Borgo più bello d'Italia 2015 nella trasmissione di Rai 3 condotta da Camila Raznovich e Dario Vergassola.",
       watchVideo: "Guarda il servizio su RaiPlay",
       installHint: "Aggiungi questa app alla schermata Home per un accesso rapido, anche offline.",
+      installButton: "Installa l'app",
       attivitaTitle: "Percorso Gastronomico",
       attivitaSubtitle: "Scopri le bontà gastronomiche di Montalbano Elicona",
       attivitaCta: "Scopri tutte le attività",
@@ -143,6 +145,7 @@ export const dictionaries: Record<Locale, Dict> = {
         "At 907 metres in the Nebrodi mountains, amid centuries-old woods and a castle that once was a royal residence, Montalbano Elicona was voted Italy's Most Beautiful Village 2015 on the Rai 3 show hosted by Camila Raznovich and Dario Vergassola.",
       watchVideo: "Watch the report on RaiPlay",
       installHint: "Add this app to your Home screen for quick access, even offline.",
+      installButton: "Install app",
       attivitaTitle: "Food Trail",
       attivitaSubtitle: "Discover the gastronomic delights of Montalbano Elicona",
       attivitaCta: "Discover all businesses",
@@ -217,6 +220,7 @@ export const dictionaries: Record<Locale, Dict> = {
         "A 907 metros en los montes Nebrodi, entre bosques centenarios y un castillo que fue residencia real, Montalbano Elicona fue elegido Pueblo más bonito de Italia 2015 en el programa de Rai 3 presentado por Camila Raznovich y Dario Vergassola.",
       watchVideo: "Ver el reportaje en RaiPlay",
       installHint: "Añade esta app a tu pantalla de inicio para un acceso rápido, incluso sin conexión.",
+      installButton: "Instalar la app",
       attivitaTitle: "Ruta Gastronómica",
       attivitaSubtitle: "Descubre las delicias gastronómicas de Montalbano Elicona",
       attivitaCta: "Descubre todos los negocios",
@@ -291,6 +295,7 @@ export const dictionaries: Record<Locale, Dict> = {
         "À 907 mètres dans les monts Nebrodi, parmi des bois centenaires et un château qui fut résidence royale, Montalbano Elicona a été élu plus beau village d'Italie 2015 lors de l'émission de Rai 3 animée par Camila Raznovich et Dario Vergassola.",
       watchVideo: "Voir le reportage sur RaiPlay",
       installHint: "Ajoutez cette appli à votre écran d'accueil pour un accès rapide, même hors ligne.",
+      installButton: "Installer l'appli",
       attivitaTitle: "Circuit Gastronomique",
       attivitaSubtitle: "Découvrez les délices gastronomiques de Montalbano Elicona",
       attivitaCta: "Découvrir tous les commerces",

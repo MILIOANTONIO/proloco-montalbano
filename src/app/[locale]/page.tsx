@@ -7,6 +7,7 @@ import HeroCarousel from "@/components/HeroCarousel";
 import LatestFlash from "@/components/LatestFlash";
 import { MapIcon, InfoIcon, CalendarIcon, NewspaperIcon, AwardIcon, PlayIcon } from "@/components/icons";
 import ActivityBanner from "@/components/ActivityBanner";
+import InstallPwaButton from "@/components/InstallPwaButton";
 
 const RAIPLAY_URL =
   "https://www.raiplay.it/video/2015/02/Il-Borgo-dei-Borghi-Montalbano-Elicona-Messina---Kilimangiaro-del-22022015-5ac86b31-e331-4cd2-859c-3253f7be486e.html";
@@ -131,6 +132,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
     install: (
       <section className="rounded-3xl bg-brand-100/60 p-5 text-sm text-brand-800">
         <p>{t.home.installHint}</p>
+        <InstallPwaButton label={t.home.installButton} />
       </section>
     ),
   };

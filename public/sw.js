@@ -46,6 +46,7 @@ self.addEventListener("push", (event) => {
       body: payload.body || "",
       icon: "/icons/icon-192.png",
       badge: "/icons/icon-192.png",
+      image: payload.image || undefined,
       vibrate: [200, 100, 200],
       silent: false,
       data: { url: payload.url || "/it" },

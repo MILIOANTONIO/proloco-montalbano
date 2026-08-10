@@ -23,7 +23,17 @@ export function getWebPush() {
  * Non lancia eccezioni: se le chiavi VAPID non sono configurate, non fa nulla
  * (per non bloccare la creazione di news/eventi se il push non è ancora impostato).
  */
-export async function sendPushToAll({ title, body, url }: { title: string; body: string; url: string }) {
+export async function sendPushToAll({
+  title,
+  body,
+  url,
+  image,
+}: {
+  title: string;
+  body: string;
+  url: string;
+  image?: string;
+}) {
   let webpush;
   try {
     webpush = getWebPush();
@@ -32,7 +42,7 @@ export async function sendPushToAll({ title, body, url }: { title: string; body:
   }
 
   const subscriptions = await prisma.pushSubscription.findMany();
-  const payload = JSON.stringify({ title, body, url });
+  const payload = JSON.stringify({ title, body, url, image: image || undefined });
 
   let sent = 0;
   const stale: string[] = [];

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { locales, localeNames } from "@/lib/i18n";
 import FileUploadField from "./FileUploadField";
+import TranslateButton from "./TranslateButton";
 
 type Translation = { title: string; description: string };
 type TranslationsMap = Record<string, Translation>;
@@ -139,17 +140,24 @@ export default function EventForm({
       </div>
 
       <div>
-        <div className="mb-2 flex gap-2 border-b border-gray-200">
-          {locales.map((l) => (
-            <button
-              key={l}
-              type="button"
-              onClick={() => setActiveLocale(l)}
-              className={`px-3 py-2 text-sm ${activeLocale === l ? "border-b-2 border-gray-800 font-semibold text-gray-900" : "text-gray-500"}`}
-            >
-              {localeNames[l]}
-            </button>
-          ))}
+        <div className="mb-2 flex flex-wrap items-center justify-between gap-2 border-b border-gray-200 pb-2">
+          <div className="flex gap-2">
+            {locales.map((l) => (
+              <button
+                key={l}
+                type="button"
+                onClick={() => setActiveLocale(l)}
+                className={`px-3 py-2 text-sm ${activeLocale === l ? "border-b-2 border-gray-800 font-semibold text-gray-900" : "text-gray-500"}`}
+              >
+                {localeNames[l]}
+              </button>
+            ))}
+          </div>
+          <TranslateButton
+            fields={["title", "description"]}
+            itValues={translations.it}
+            onTranslated={(locale, values) => setTranslations((prev) => ({ ...prev, [locale]: { ...prev[locale], ...values } }))}
+          />
         </div>
         {locales.map((l) => (
           <div key={l} className={activeLocale === l ? "space-y-3" : "hidden"}>

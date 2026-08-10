@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { locales, localeNames } from "@/lib/i18n";
 import FileUploadField from "./FileUploadField";
+import TranslateButton from "./TranslateButton";
 
 export type ChapterTranslationState = { heading: string; text: string; audioUrl: string; videoUrl: string };
 export type ChapterState = { imageUrl: string; translations: Record<string, ChapterTranslationState> };
@@ -63,17 +64,26 @@ function ChapterCard({
       />
 
       <div>
-        <div className="mb-2 flex gap-2 border-b border-gray-200">
-          {locales.map((l) => (
-            <button
-              key={l}
-              type="button"
-              onClick={() => setActiveLocale(l)}
-              className={`px-3 py-1.5 text-sm ${activeLocale === l ? "border-b-2 border-gray-800 font-semibold text-gray-900" : "text-gray-500"}`}
-            >
-              {localeNames[l]}
-            </button>
-          ))}
+        <div className="mb-2 flex flex-wrap items-center justify-between gap-2 border-b border-gray-200 pb-2">
+          <div className="flex gap-2">
+            {locales.map((l) => (
+              <button
+                key={l}
+                type="button"
+                onClick={() => setActiveLocale(l)}
+                className={`px-3 py-1.5 text-sm ${activeLocale === l ? "border-b-2 border-gray-800 font-semibold text-gray-900" : "text-gray-500"}`}
+              >
+                {localeNames[l]}
+              </button>
+            ))}
+          </div>
+          <TranslateButton
+            fields={["heading", "text"]}
+            itValues={chapter.translations.it}
+            onTranslated={(locale, values) =>
+              onChange({ ...chapter, translations: { ...chapter.translations, [locale]: { ...chapter.translations[locale], ...values } } })
+            }
+          />
         </div>
         {locales.map((l) => (
           <div key={l} className={activeLocale === l ? "space-y-3" : "hidden"}>

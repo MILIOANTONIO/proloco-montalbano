@@ -15,12 +15,23 @@ export default function PushSubscribeButton({ locale }: { locale: Locale }) {
   const [status, setStatus] = useState<"idle" | "enabled" | "denied" | "unsupported">("idle");
 
   useEffect(() => {
-    if (typeof window === "undefined" || !("Notification" in window)) {
+    if (typeof window === "undefined" || !("Notification" in window) || !("serviceWorker" in navigator)) {
       setStatus("unsupported");
       return;
     }
-    if (Notification.permission === "granted") setStatus("enabled");
-    if (Notification.permission === "denied") setStatus("denied");
+    if (Notification.permission === "denied") {
+      setStatus("denied");
+      return;
+    }
+    if (Notification.permission === "granted") {
+      // Il permesso del sito resta concesso anche se l'app viene disinstallata/reinstallata,
+      // ma la sottoscrizione push viene invalidata: verifichiamo che esista ancora davvero,
+      // altrimenti lasciamo il bottone attivo per poterla ricreare.
+      navigator.serviceWorker.ready
+        .then((registration) => registration.pushManager.getSubscription())
+        .then((sub) => setStatus(sub ? "enabled" : "idle"))
+        .catch(() => setStatus("idle"));
+    }
   }, []);
 
   async function subscribe() {

@@ -9,7 +9,8 @@ export async function POST(req: NextRequest) {
   const body = await req.json().catch(() => null);
   const title = body?.title?.trim();
   const message = body?.body?.trim();
-  const url = body?.url?.trim() || "/it";
+  let url = body?.url?.trim() || "/it";
+  if (url && !url.startsWith("/") && !/^https?:\/\//i.test(url)) url = `https://${url}`;
   const image = body?.image?.trim() || undefined;
   if (!title || !message) {
     return NextResponse.json({ error: "Titolo e testo obbligatori" }, { status: 400 });

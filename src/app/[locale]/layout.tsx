@@ -27,8 +27,17 @@ export default async function LocaleLayout({
       <PwaRegister />
       <NavBar locale={locale} />
       <main className="mx-auto min-h-[70vh] max-w-6xl px-4 py-8 sm:px-6 lg:px-8">{children}</main>
-      <footer className="border-t border-brand-200 bg-brand-100/60 px-4 py-8 text-center text-xs text-brand-700">
-        Pro Loco Montalbano Elicona APS — Piazza Maria SS della Provvidenza, 98065 Montalbano Elicona (ME)
+      <footer className="border-t border-brand-200 bg-brand-100/60 px-4 py-8 text-center text-brand-700">
+        <div className="flex items-center justify-center gap-3">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/brand/stemma.png" alt="Stemma del Comune di Montalbano Elicona" className="h-10 w-auto shrink-0" />
+          <span className="font-display text-sm font-bold uppercase tracking-wide text-brand-900">
+            Comune di Montalbano Elicona
+          </span>
+        </div>
+        <p className="mt-4 text-xs">
+          © {new Date().getFullYear()} Pro Loco Montalbano Elicona APS — Piazza Maria SS della Provvidenza, 98065 Montalbano Elicona (ME)
+        </p>
       </footer>
     </>
   );

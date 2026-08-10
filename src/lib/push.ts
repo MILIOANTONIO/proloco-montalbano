@@ -47,6 +47,8 @@ export async function sendPushToAll({ title, body, url }: { title: string; body:
         sent++;
       } catch (err: unknown) {
         const statusCode = (err as { statusCode?: number })?.statusCode;
+        const message = (err as { body?: string; message?: string })?.body || (err as Error)?.message;
+        console.error(`[push] invio fallito verso ${new URL(sub.endpoint).host} (sub ${sub.id}, locale ${sub.locale}): status=${statusCode} ${message}`);
         if (statusCode === 404 || statusCode === 410) stale.push(sub.id);
       }
     })

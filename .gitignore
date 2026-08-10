@@ -10,3 +10,4 @@ prisma/dev.db
 uploads/
 .DS_Store
 next-env.d.ts
+tsconfig.tsbuildinfo

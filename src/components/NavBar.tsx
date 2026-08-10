@@ -43,10 +43,10 @@ export default function NavBar({ locale }: { locale: Locale }) {
 
   return (
     <header className="sticky top-0 z-20 border-b border-brand-200/70 bg-cream/90 backdrop-blur-md">
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-1.5 sm:px-6 lg:px-8">
         <Link href={base} className="flex shrink-0 items-center">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/brand/logo-full.png" alt="Montalbano Elicona" className="h-11 w-auto sm:h-12" />
+          <img src="/brand/logo-full.png" alt="Montalbano Elicona" className="h-16 w-auto sm:h-[4.5rem]" />
         </Link>
 
         {/* Nav desktop */}

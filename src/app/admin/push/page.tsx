@@ -36,31 +36,59 @@ export default function AdminPushPage() {
   }
 
   return (
-    <div className="max-w-lg space-y-4">
+    <div className="max-w-3xl space-y-4">
       <h1 className="text-xl font-bold text-gray-800">Notifiche push</h1>
       <p className="text-sm text-gray-500">Invia una notifica a tutti gli utenti che hanno installato l&apos;app e attivato le notifiche.</p>
 
       {result && <p className="rounded bg-green-50 px-3 py-2 text-sm text-green-700">{result}</p>}
       {error && <p className="rounded bg-red-50 px-3 py-2 text-sm text-red-700">{error}</p>}
 
-      <form onSubmit={handleSubmit} className="space-y-3 rounded-xl border border-gray-200 bg-white p-4">
-        <div>
-          <label className="mb-1 block text-sm font-medium text-gray-700">Titolo</label>
-          <input required value={title} onChange={(e) => setTitle(e.target.value)} className="w-full rounded border border-gray-300 px-3 py-2" />
+      <div className="flex flex-col gap-6 md:flex-row">
+        <form onSubmit={handleSubmit} className="max-w-lg flex-1 space-y-3 rounded-xl border border-gray-200 bg-white p-4">
+          <div>
+            <label className="mb-1 block text-sm font-medium text-gray-700">Titolo</label>
+            <input required value={title} onChange={(e) => setTitle(e.target.value)} className="w-full rounded border border-gray-300 px-3 py-2" />
+          </div>
+          <div>
+            <label className="mb-1 block text-sm font-medium text-gray-700">Testo</label>
+            <textarea required value={message} onChange={(e) => setMessage(e.target.value)} rows={4} className="w-full rounded border border-gray-300 px-3 py-2" />
+          </div>
+          <div>
+            <label className="mb-1 block text-sm font-medium text-gray-700">Link (opzionale)</label>
+            <input value={url} onChange={(e) => setUrl(e.target.value)} className="w-full rounded border border-gray-300 px-3 py-2" placeholder="/it/eventi" />
+          </div>
+          <FileUploadField kind="image" label="Immagine (opzionale, si vede bene soprattutto su Android)" value={image} onChange={setImage} />
+          <button type="submit" disabled={sending} className="rounded bg-gray-800 px-4 py-2 text-sm font-medium text-white disabled:opacity-60">
+            {sending ? "Invio…" : "Invia notifica"}
+          </button>
+        </form>
+
+        <div className="w-full max-w-sm shrink-0 space-y-2">
+          <p className="text-sm font-medium text-gray-700">Anteprima</p>
+          <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
+            <div className="flex items-start gap-2 px-3 pt-3">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/icons/icon-192.png" alt="" className="h-5 w-5 shrink-0 rounded-sm" />
+              <div className="min-w-0 flex-1">
+                <p className="truncate text-[11px] text-gray-400">Montalbano Elicona · ora</p>
+                <p className="truncate text-sm font-semibold text-gray-900">{title || "Titolo della notifica"}</p>
+                <p className="line-clamp-2 text-sm text-gray-600">{message || "Il testo della notifica apparirà qui."}</p>
+              </div>
+            </div>
+            <div className="p-3 pt-2">
+              {image ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={image} alt="" className="max-h-40 w-full rounded-lg object-cover" />
+              ) : (
+                <div className="flex h-24 items-center justify-center rounded-lg border border-dashed border-gray-200 text-xs text-gray-400">
+                  Nessuna immagine
+                </div>
+              )}
+            </div>
+          </div>
+          <p className="text-xs text-gray-400">Anteprima indicativa: l&apos;aspetto reale varia leggermente tra dispositivi e browser.</p>
         </div>
-        <div>
-          <label className="mb-1 block text-sm font-medium text-gray-700">Testo</label>
-          <textarea required value={message} onChange={(e) => setMessage(e.target.value)} rows={4} className="w-full rounded border border-gray-300 px-3 py-2" />
-        </div>
-        <div>
-          <label className="mb-1 block text-sm font-medium text-gray-700">Link (opzionale)</label>
-          <input value={url} onChange={(e) => setUrl(e.target.value)} className="w-full rounded border border-gray-300 px-3 py-2" placeholder="/it/eventi" />
-        </div>
-        <FileUploadField kind="image" label="Immagine (opzionale, si vede bene soprattutto su Android)" value={image} onChange={setImage} />
-        <button type="submit" disabled={sending} className="rounded bg-gray-800 px-4 py-2 text-sm font-medium text-white disabled:opacity-60">
-          {sending ? "Invio…" : "Invia notifica"}
-        </button>
-      </form>
+      </div>
     </div>
   );
 }

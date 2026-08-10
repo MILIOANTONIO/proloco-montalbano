@@ -28,6 +28,7 @@ export default function NewsForm({
 }) {
   const router = useRouter();
   const [published, setPublished] = useState(initial?.published ?? true);
+  const [notify, setNotify] = useState(!newsId);
   const [coverImage, setCoverImage] = useState(initial?.coverImage || "");
   const [coverVideo, setCoverVideo] = useState(initial?.coverVideo || "");
   const [translations, setTranslations] = useState<TranslationsMap>(() => {
@@ -50,7 +51,7 @@ export default function NewsForm({
     const res = await fetch(newsId ? `/api/admin/news/${newsId}` : "/api/admin/news", {
       method: newsId ? "PUT" : "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ published, coverImage, coverVideo, translations }),
+      body: JSON.stringify({ published, notify, coverImage, coverVideo, translations }),
     });
     setSaving(false);
     if (res.ok) {
@@ -70,6 +71,12 @@ export default function NewsForm({
         <input type="checkbox" id="published" checked={published} onChange={(e) => setPublished(e.target.checked)} />
         <label htmlFor="published" className="text-sm text-gray-700">
           Pubblicato
+        </label>
+      </div>
+      <div className="flex items-center gap-2">
+        <input type="checkbox" id="notify" checked={notify} onChange={(e) => setNotify(e.target.checked)} />
+        <label htmlFor="notify" className="text-sm text-gray-700">
+          Invia notifica push agli iscritti
         </label>
       </div>
 

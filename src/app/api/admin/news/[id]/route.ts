@@ -33,7 +33,7 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
     ),
   ]);
 
-  if (nowPublished) {
+  if (nowPublished && body.notify) {
     const inputTranslations = locales.map((locale) => ({
       locale,
       title: body.translations?.[locale]?.title || "",

@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { requireAdmin } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { sendPushToAll } from "@/lib/push";
 
 export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const session = await requireAdmin();
@@ -20,12 +19,6 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
       notes: body.notes || null,
       order: body.order ?? 0,
     },
-  });
-
-  await sendPushToAll({
-    title: "Informazione aggiornata",
-    body: item.name,
-    url: "/it/info",
   });
 
   return NextResponse.json(item);

@@ -40,6 +40,7 @@ export default function EventForm({
   const [endDate, setEndDate] = useState(toInputDate(initial?.endDate));
   const [location, setLocation] = useState(initial?.location || "");
   const [published, setPublished] = useState(initial?.published ?? true);
+  const [notify, setNotify] = useState(!eventId);
   const [coverImage, setCoverImage] = useState(initial?.coverImage || "");
   const [coverVideoMobile, setCoverVideoMobile] = useState(initial?.coverVideoMobile || "");
   const [coverVideoDesktop, setCoverVideoDesktop] = useState(initial?.coverVideoDesktop || "");
@@ -63,7 +64,7 @@ export default function EventForm({
     const res = await fetch(eventId ? `/api/admin/eventi/${eventId}` : "/api/admin/eventi", {
       method: eventId ? "PUT" : "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ startDate, endDate: endDate || null, location, published, coverImage, coverVideoMobile, coverVideoDesktop, translations }),
+      body: JSON.stringify({ startDate, endDate: endDate || null, location, published, notify, coverImage, coverVideoMobile, coverVideoDesktop, translations }),
     });
     setSaving(false);
     if (res.ok) {
@@ -107,6 +108,12 @@ export default function EventForm({
           <input type="checkbox" id="published" checked={published} onChange={(e) => setPublished(e.target.checked)} />
           <label htmlFor="published" className="text-sm text-gray-700">
             Pubblicato
+          </label>
+        </div>
+        <div className="flex items-end gap-2">
+          <input type="checkbox" id="notify" checked={notify} onChange={(e) => setNotify(e.target.checked)} />
+          <label htmlFor="notify" className="text-sm text-gray-700">
+            Invia notifica push agli iscritti
           </label>
         </div>
       </div>

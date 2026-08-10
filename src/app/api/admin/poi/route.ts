@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { requireAdmin } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { locales, pickTranslation } from "@/lib/i18n";
-import { sendPushToAll } from "@/lib/push";
+import { locales } from "@/lib/i18n";
 import { buildChapterCreateInput } from "@/lib/poi-chapters";
 
 export async function GET() {
@@ -57,22 +56,6 @@ export async function POST(req: NextRequest) {
         },
       },
     });
-
-    if (poi.published) {
-      const inputTranslations = locales.map((locale) => ({
-        locale,
-        title: body.translations?.[locale]?.title || "",
-        description: body.translations?.[locale]?.description || "",
-      }));
-      const tr = pickTranslation(inputTranslations, "it");
-      if (tr) {
-        await sendPushToAll({
-          title: "Nuovo punto di interesse",
-          body: tr.title,
-          url: `/it/percorso/${poi.slug}`,
-        });
-      }
-    }
 
     return NextResponse.json(poi);
   } catch (err) {

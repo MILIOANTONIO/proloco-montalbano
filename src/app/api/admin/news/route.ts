@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
     },
   });
 
-  if (post.published) {
+  if (post.published && body.notify) {
     const inputTranslations = locales.map((locale) => ({
       locale,
       title: body.translations?.[locale]?.title || "",

@@ -15,11 +15,12 @@ function simplifyPath(path: string) {
 
 async function getStats() {
   const now = new Date();
-  const startToday = new Date(now);
-  startToday.setHours(0, 0, 0, 0);
+  // Confronti in UTC (non ora locale del processo) per allinearsi a strftime/toISOString,
+  // che sono sempre UTC — altrimenti su un server con fuso diverso da UTC i conteggi
+  // giornalieri si sfasano di un giorno.
+  const startToday = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()));
   const start7 = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
-  const start14 = new Date(now.getTime() - 13 * 24 * 60 * 60 * 1000);
-  start14.setHours(0, 0, 0, 0);
+  const start14 = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() - 13));
   const start30 = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
 
   const [viewsToday, views7d, views30d, viewsTotal, dailyRaw, topPagesRaw, localeRaw] = await Promise.all([
@@ -28,9 +29,9 @@ async function getStats() {
     prisma.pageView.count({ where: { createdAt: { gte: start30 } } }),
     prisma.pageView.count(),
     prisma.$queryRaw<{ day: string; count: bigint }[]>`
-      SELECT strftime('%Y-%m-%d', "createdAt") as day, COUNT(*) as count
+      SELECT strftime('%Y-%m-%d', "createdAt" / 1000, 'unixepoch') as day, COUNT(*) as count
       FROM "PageView"
-      WHERE "createdAt" >= ${start14.toISOString()}
+      WHERE "createdAt" >= ${start14.getTime()}
       GROUP BY day
       ORDER BY day ASC
     `,
@@ -54,7 +55,7 @@ async function getStats() {
   for (let i = 0; i < 14; i++) {
     const d = new Date(start14.getTime() + i * 24 * 60 * 60 * 1000);
     const key = d.toISOString().slice(0, 10);
-    daily.push({ label: `${String(d.getDate()).padStart(2, "0")}/${String(d.getMonth() + 1).padStart(2, "0")}`, count: dailyMap.get(key) ?? 0 });
+    daily.push({ label: `${String(d.getUTCDate()).padStart(2, "0")}/${String(d.getUTCMonth() + 1).padStart(2, "0")}`, count: dailyMap.get(key) ?? 0 });
   }
 
   const topPages = topPagesRaw.map((r) => ({ label: simplifyPath(r.path), count: r._count.path }));

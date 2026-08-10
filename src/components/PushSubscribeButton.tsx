@@ -46,6 +46,11 @@ export default function PushSubscribeButton({ locale }: { locale: Locale }) {
       return;
     }
     const registration = await navigator.serviceWorker.ready;
+    // Se esiste già una sottoscrizione (magari morta lato server, es. dopo una
+    // disinstallazione dell'app), il browser la restituirebbe invariata da subscribe().
+    // La rimuoviamo prima, cosi il push service ne genera sempre una nuova valida.
+    const existing = await registration.pushManager.getSubscription();
+    if (existing) await existing.unsubscribe();
     const subscription = await registration.pushManager.subscribe({
       userVisibleOnly: true,
       applicationServerKey: urlBase64ToUint8Array(vapidPublicKey),

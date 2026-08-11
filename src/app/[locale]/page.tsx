@@ -64,10 +64,10 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   };
 
   const cards = [
-    { href: `${base}/percorso`, label: t.nav.percorso, Icon: MapIcon, big: true, image: "/brand/castello/veduta-generale.jpg" },
-    { href: `${base}/info`, label: t.nav.info, Icon: InfoIcon, image: "/brand/borgo/stradina.jpg" },
-    { href: `${base}/eventi`, label: t.nav.eventi, Icon: CalendarIcon, image: "/brand/duomo/veduta-piazza.jpg" },
-    { href: `${base}/news`, label: t.nav.news, Icon: NewspaperIcon, image: "/brand/castello/torre-avvistamento.jpg" },
+    { href: `${base}/percorso`, label: t.nav.percorso, Icon: MapIcon, big: true, image: settings.cardPercorsoImage || "/brand/castello/veduta-generale.jpg" },
+    { href: `${base}/info`, label: t.nav.info, Icon: InfoIcon, image: settings.cardInfoImage || "/brand/borgo/stradina.jpg" },
+    { href: `${base}/eventi`, label: t.nav.eventi, Icon: CalendarIcon, image: settings.cardEventiImage || "/brand/duomo/veduta-piazza.jpg" },
+    { href: `${base}/news`, label: t.nav.news, Icon: NewspaperIcon, image: settings.cardNewsImage || "/brand/castello/torre-avvistamento.jpg" },
   ];
 
   const sections: Record<HomepageSection, React.ReactNode> = {

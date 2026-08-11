@@ -28,6 +28,10 @@ export default function HomepageSettingsForm({
     attivitaBannerImage: string | null;
     attivitaBannerVideoMobile: string | null;
     attivitaBannerVideoDesktop: string | null;
+    cardPercorsoImage?: string | null;
+    cardInfoImage?: string | null;
+    cardEventiImage?: string | null;
+    cardNewsImage?: string | null;
   };
 }) {
   const router = useRouter();
@@ -51,6 +55,10 @@ export default function HomepageSettingsForm({
   const [bannerImage, setBannerImage] = useState(initial.attivitaBannerImage || "");
   const [bannerVideoMobile, setBannerVideoMobile] = useState(initial.attivitaBannerVideoMobile || "");
   const [bannerVideoDesktop, setBannerVideoDesktop] = useState(initial.attivitaBannerVideoDesktop || "");
+  const [cardPercorsoImage, setCardPercorsoImage] = useState(initial.cardPercorsoImage || "");
+  const [cardInfoImage, setCardInfoImage] = useState(initial.cardInfoImage || "");
+  const [cardEventiImage, setCardEventiImage] = useState(initial.cardEventiImage || "");
+  const [cardNewsImage, setCardNewsImage] = useState(initial.cardNewsImage || "");
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [saved, setSaved] = useState(false);
@@ -82,6 +90,10 @@ export default function HomepageSettingsForm({
         attivitaBannerImage: bannerImage,
         attivitaBannerVideoMobile: bannerVideoMobile,
         attivitaBannerVideoDesktop: bannerVideoDesktop,
+        cardPercorsoImage,
+        cardInfoImage,
+        cardEventiImage,
+        cardNewsImage,
       }),
     });
     setSaving(false);
@@ -109,6 +121,17 @@ export default function HomepageSettingsForm({
         <FileUploadField kind="video" label="Video da cellulare (verticale/quadrato)" value={bannerVideoMobile} onChange={setBannerVideoMobile} />
         <FileUploadField kind="video" label="Video da PC (orizzontale)" value={bannerVideoDesktop} onChange={setBannerVideoDesktop} />
         <FileUploadField kind="image" label="Foto (usata se non carichi nessun video)" value={bannerImage} onChange={setBannerImage} />
+      </div>
+
+      <div className="space-y-3 rounded-xl border border-gray-200 bg-white p-4">
+        <div>
+          <h2 className="text-sm font-semibold text-gray-700">Foto dei riquadri di accesso rapido</h2>
+          <p className="text-xs text-gray-400">Le 4 foto sotto al benvenuto che rimandano a Percorso, Info utili, Eventi e News.</p>
+        </div>
+        <FileUploadField kind="image" label="Foto — Percorso Storico" value={cardPercorsoImage} onChange={setCardPercorsoImage} />
+        <FileUploadField kind="image" label="Foto — Info utili" value={cardInfoImage} onChange={setCardInfoImage} />
+        <FileUploadField kind="image" label="Foto — Eventi" value={cardEventiImage} onChange={setCardEventiImage} />
+        <FileUploadField kind="image" label="Foto — News" value={cardNewsImage} onChange={setCardNewsImage} />
       </div>
 
       <div className="rounded-xl border border-gray-200 bg-white p-4">

@@ -8,8 +8,8 @@ export default function VisitsChart({ data }: { data: Point[] }) {
   const barWidth = data.length > 0 ? width / data.length - barGap : 0;
 
   return (
-    <div className="overflow-x-auto">
-      <svg viewBox={`0 0 ${width} ${height + 24}`} className="h-48 w-full min-w-[480px]">
+    <div>
+      <svg viewBox={`0 0 ${width} ${height + 24}`} className="h-40 w-full sm:h-48">
         {data.map((d, i) => {
           const barHeight = max > 0 ? (d.count / max) * height : 0;
           const x = i * (barWidth + barGap);

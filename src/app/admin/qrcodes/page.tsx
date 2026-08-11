@@ -1,13 +1,15 @@
 import QRCode from "qrcode";
 import { prisma } from "@/lib/prisma";
+import { getSiteSettings } from "@/lib/settings";
+import QrPosterSection from "@/components/admin/QrPosterSection";
 
 export const dynamic = "force-dynamic";
 
 export default async function AdminQrCodesPage() {
-  const pois = await prisma.pointOfInterest.findMany({
-    orderBy: { order: "asc" },
-    include: { translations: { where: { locale: "it" } } },
-  });
+  const [pois, settings] = await Promise.all([
+    prisma.pointOfInterest.findMany({ orderBy: { order: "asc" }, include: { translations: { where: { locale: "it" } } } }),
+    getSiteSettings(),
+  ]);
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
@@ -20,11 +22,25 @@ export default async function AdminQrCodesPage() {
   );
 
   return (
-    <div className="space-y-4">
-      <h1 className="text-xl font-bold text-gray-800">QR Code punti di interesse</h1>
-      <p className="text-sm text-gray-500">
-        Ogni QR Code apre direttamente la scheda del punto di interesse. Stampali e posizionali sul posto (targa, pannello, adesivo).
-      </p>
+    <div className="space-y-6">
+      <div>
+        <h1 className="text-xl font-bold text-gray-800">QR Code punti di interesse</h1>
+        <p className="text-sm text-gray-500">
+          Ogni QR Code apre direttamente la scheda del punto di interesse. Stampali e posizionali sul posto (targa, pannello, adesivo).
+        </p>
+      </div>
+
+      <QrPosterSection
+        initial={{
+          qrTemplateImage: settings.qrTemplateImage,
+          qrBoxLeft: settings.qrBoxLeft,
+          qrBoxTop: settings.qrBoxTop,
+          qrBoxWidth: settings.qrBoxWidth,
+          qrBoxHeight: settings.qrBoxHeight,
+        }}
+        siteUrl={siteUrl}
+        pois={pois.map((p) => ({ slug: p.slug, label: p.translations[0]?.title || p.slug }))}
+      />
 
       {items.length === 0 ? (
         <p className="text-gray-400">Crea prima almeno un punto di interesse.</p>

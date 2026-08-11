@@ -137,6 +137,13 @@ model SiteSettings {
   cardInfoImage     String?
   cardEventiImage   String?
   cardNewsImage     String?
+  // Template poster per i QR code: immagine di sfondo (A4) + posizione del riquadro
+  // dove va inserito il QR code, in percentuale delle dimensioni dell'immagine.
+  qrTemplateImage String?
+  qrBoxLeft       Float   @default(31.3)
+  qrBoxTop        Float   @default(44.8)
+  qrBoxWidth      Float   @default(36.0)
+  qrBoxHeight     Float   @default(27.2)
   updatedAt    DateTime @updatedAt
 }
 

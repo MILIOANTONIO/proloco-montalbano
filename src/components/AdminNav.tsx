@@ -15,6 +15,7 @@ const links = [
   { href: "/admin/info", label: "Info utili" },
   { href: "/admin/qrcodes", label: "QR Code" },
   { href: "/admin/push", label: "Notifiche push" },
+  { href: "/admin/utenti", label: "Utenti" },
 ];
 
 function MenuIcon({ open }: { open: boolean }) {

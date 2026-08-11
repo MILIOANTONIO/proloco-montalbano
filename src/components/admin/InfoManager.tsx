@@ -11,6 +11,7 @@ type InfoItem = {
   address: string | null;
   notes: string | null;
   order: number;
+  published: boolean;
 };
 
 const CATEGORIES = [
@@ -20,7 +21,7 @@ const CATEGORIES = [
   { value: "altro", label: "Altro contatto utile" },
 ];
 
-const emptyForm = { category: "emergenza", name: "", phone: "", address: "", notes: "", order: 0 };
+const emptyForm = { category: "emergenza", name: "", phone: "", address: "", notes: "", order: 0, published: true };
 
 export default function InfoManager({ items }: { items: InfoItem[] }) {
   const router = useRouter();
@@ -38,6 +39,7 @@ export default function InfoManager({ items }: { items: InfoItem[] }) {
       address: item.address || "",
       notes: item.notes || "",
       order: item.order,
+      published: item.published,
     });
   }
 
@@ -79,6 +81,7 @@ export default function InfoManager({ items }: { items: InfoItem[] }) {
             <tr>
               <th className="px-3 py-2">Categoria</th>
               <th className="px-3 py-2">Nome</th>
+              <th className="px-3 py-2">Stato</th>
               <th className="px-3 py-2"></th>
             </tr>
           </thead>
@@ -87,6 +90,11 @@ export default function InfoManager({ items }: { items: InfoItem[] }) {
               <tr key={item.id} className="border-t border-gray-100">
                 <td className="px-3 py-2 text-gray-500">{CATEGORIES.find((c) => c.value === item.category)?.label || item.category}</td>
                 <td className="px-3 py-2 font-medium text-gray-800">{item.name}</td>
+                <td className="px-3 py-2">
+                  <span className={`rounded-full px-2 py-0.5 text-xs ${item.published ? "bg-green-50 text-green-700" : "bg-gray-100 text-gray-500"}`}>
+                    {item.published ? "Attivo" : "Sospeso"}
+                  </span>
+                </td>
                 <td className="px-3 py-2 text-right">
                   <button onClick={() => startEdit(item)} className="mr-3 text-gray-600 hover:underline">
                     Modifica
@@ -99,7 +107,7 @@ export default function InfoManager({ items }: { items: InfoItem[] }) {
             ))}
             {items.length === 0 && (
               <tr>
-                <td colSpan={3} className="px-3 py-6 text-center text-gray-400">
+                <td colSpan={4} className="px-3 py-6 text-center text-gray-400">
                   Nessun contatto inserito.
                 </td>
               </tr>
@@ -150,6 +158,13 @@ export default function InfoManager({ items }: { items: InfoItem[] }) {
             onChange={(e) => setForm({ ...form, order: Number(e.target.value) })}
             className="w-full rounded border border-gray-300 px-3 py-2"
           />
+        </div>
+        <div>
+          <label className="flex items-center gap-2 text-sm text-gray-700">
+            <input type="checkbox" checked={form.published} onChange={(e) => setForm({ ...form, published: e.target.checked })} />
+            Attivo sul sito
+          </label>
+          <p className="mt-1 text-xs text-gray-400">Deseleziona per sospendere questo contatto: resta salvato ma sparisce dal sito finché non lo riattivi.</p>
         </div>
         <div className="flex gap-2">
           <button type="submit" disabled={saving} className="rounded bg-gray-800 px-4 py-2 text-sm font-medium text-white disabled:opacity-60">

@@ -133,11 +133,12 @@ export default function ActivityForm({
             className="w-full rounded border border-gray-300 px-3 py-2"
           />
         </div>
-        <div className="flex items-end gap-2">
-          <input type="checkbox" id="published" checked={published} onChange={(e) => setPublished(e.target.checked)} />
-          <label htmlFor="published" className="text-sm text-gray-700">
+        <div>
+          <label htmlFor="published" className="flex items-center gap-2 text-sm text-gray-700">
+            <input type="checkbox" id="published" checked={published} onChange={(e) => setPublished(e.target.checked)} />
             Pubblicato
           </label>
+          <p className="mt-1 text-xs text-gray-400">Deseleziona per sospendere: resta salvato ma sparisce dal sito.</p>
         </div>
       </div>
 

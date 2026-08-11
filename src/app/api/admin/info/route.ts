@@ -24,6 +24,7 @@ export async function POST(req: NextRequest) {
       address: body.address || null,
       notes: body.notes || null,
       order: body.order ?? 0,
+      published: body.published ?? true,
     },
   });
 

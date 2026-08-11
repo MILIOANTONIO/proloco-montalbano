@@ -18,6 +18,7 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
       address: body.address || null,
       notes: body.notes || null,
       order: body.order ?? 0,
+      published: body.published ?? true,
     },
   });
 

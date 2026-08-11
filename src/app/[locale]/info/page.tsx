@@ -10,7 +10,7 @@ export default async function InfoPage({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
   const t = getDictionary(locale);
 
-  const contacts = await prisma.infoContact.findMany({ orderBy: [{ category: "asc" }, { order: "asc" }] });
+  const contacts = await prisma.infoContact.findMany({ where: { published: true }, orderBy: [{ category: "asc" }, { order: "asc" }] });
 
   const grouped = categories
     .map((cat) => ({ cat, label: t.info[cat], items: contacts.filter((c) => c.category === cat) }))

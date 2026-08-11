@@ -66,13 +66,14 @@ async function getStats() {
 }
 
 export default async function AdminDashboard() {
-  const [poiCount, newsCount, eventCount, activityCount, infoCount, subCount, stats] = await Promise.all([
+  const [poiCount, newsCount, eventCount, activityCount, infoCount, subCount, pendingReports, stats] = await Promise.all([
     prisma.pointOfInterest.count(),
     prisma.newsPost.count(),
     prisma.eventItem.count(),
     prisma.activity.count(),
     prisma.infoContact.count(),
     prisma.pushSubscription.count(),
+    prisma.activityReport.count({ where: { handled: false } }),
     getStats(),
   ]);
 
@@ -82,6 +83,7 @@ export default async function AdminDashboard() {
     { href: "/admin/news", label: "News", count: newsCount },
     { href: "/admin/eventi", label: "Eventi", count: eventCount },
     { href: "/admin/attivita", label: "Attività locali", count: activityCount, hint: "ristoranti, B&B, cantine, botteghe..." },
+    { href: "/admin/segnalazioni", label: "Segnalazioni", count: pendingReports, hint: "attività mancanti o da correggere" },
     { href: "/admin/info", label: "Info utili", count: infoCount },
     { href: "/admin/qrcodes", label: "QR Code", count: null },
     { href: "/admin/push", label: "Iscritti notifiche push", count: subCount },

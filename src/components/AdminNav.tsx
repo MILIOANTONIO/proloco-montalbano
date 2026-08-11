@@ -11,6 +11,7 @@ const links = [
   { href: "/admin/news", label: "News" },
   { href: "/admin/eventi", label: "Eventi" },
   { href: "/admin/attivita", label: "Attività locali" },
+  { href: "/admin/segnalazioni", label: "Segnalazioni" },
   { href: "/admin/info", label: "Info utili" },
   { href: "/admin/qrcodes", label: "QR Code" },
   { href: "/admin/push", label: "Notifiche push" },

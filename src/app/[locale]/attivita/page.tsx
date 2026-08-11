@@ -1,6 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import { getDictionary, defaultLocale } from "@/lib/i18n";
 import ActivityGrid, { type ActivityCard } from "@/components/ActivityGrid";
+import ActivityReportModal from "@/components/ActivityReportModal";
 
 export const dynamic = "force-dynamic";
 
@@ -36,9 +37,14 @@ export default async function AttivitaPage({ params }: { params: Promise<{ local
 
   return (
     <div className="space-y-6">
-      <div className="max-w-2xl">
-        <h1 className="font-display text-3xl font-bold text-brand-900 dark:text-brand-100">{t.attivita.title}</h1>
-        <p className="mt-2 text-brand-700 dark:text-brand-300">{t.attivita.intro}</p>
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+        <div className="max-w-2xl">
+          <h1 className="font-display text-3xl font-bold text-brand-900 dark:text-brand-100">{t.attivita.title}</h1>
+          <p className="mt-2 text-brand-700 dark:text-brand-300">{t.attivita.intro}</p>
+        </div>
+        <div className="shrink-0">
+          <ActivityReportModal activities={cards.map((c) => ({ id: c.id, name: c.name }))} />
+        </div>
       </div>
 
       {cards.length === 0 ? (

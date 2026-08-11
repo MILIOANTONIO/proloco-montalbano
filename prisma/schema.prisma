@@ -166,6 +166,26 @@ model ActivityTranslation {
   @@unique([activityId, locale])
 }
 
+// Segnalazioni dei visitatori: attivita mancanti sul sito o correzioni a quelle esistenti.
+// Compilate dal form pubblico in /attivita, riviste dall'admin in /admin/segnalazioni.
+model ActivityReport {
+  id            String   @id @default(cuid())
+  type          String // "missing" | "edit"
+  activityId    String? // valorizzato solo se type = "edit"
+  activityName  String
+  categories    String?
+  address       String?
+  phone         String?
+  website       String?
+  notes         String
+  photo         String?
+  reporterName  String
+  reporterEmail String
+  reporterPhone String?
+  handled       Boolean  @default(false)
+  createdAt     DateTime @default(now())
+}
+
 model HeroSlide {
   id           String   @id @default(cuid())
   order        Int      @default(0)

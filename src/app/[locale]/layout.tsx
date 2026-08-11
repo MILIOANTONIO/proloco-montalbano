@@ -5,6 +5,7 @@ import PwaRegister from "@/components/PwaRegister";
 import IntroAnimation from "@/components/IntroAnimation";
 import AudioCoordinator from "@/components/AudioCoordinator";
 import PageViewTracker from "@/components/PageViewTracker";
+import CookieConsent from "@/components/CookieConsent";
 
 const privacyLinkLabel: Record<Locale, string> = {
   it: "Informativa sulla privacy",
@@ -53,6 +54,7 @@ export default async function LocaleLayout({
           </a>
         </p>
       </footer>
+      <CookieConsent locale={locale} />
     </>
   );
 }

@@ -38,6 +38,7 @@ export const privacyContent: Record<Locale, PrivacyContent> = {
         heading: "Cookie",
         body: [
           "Il sito pubblico non utilizza cookie di profilazione né di tracciamento pubblicitario. L'unico cookie presente è quello tecnico di sessione dell'area amministrativa riservata, non installato sui dispositivi dei visitatori del sito pubblico.",
+          "Al primo accesso puoi scegliere dal banner in fondo alla pagina se acconsentire alle statistiche anonime di visita oppure disattivarle, e modificare la scelta in qualsiasi momento cancellando i dati del sito dal tuo browser.",
           "I caratteri tipografici del sito sono ospitati direttamente sui nostri server: nessun dato viene trasmesso a servizi esterni per la loro visualizzazione.",
         ],
       },
@@ -94,6 +95,7 @@ export const privacyContent: Record<Locale, PrivacyContent> = {
         heading: "Cookies",
         body: [
           "The public site does not use profiling or advertising-tracking cookies. The only cookie in use is the technical session cookie of the restricted admin area, which is not set on public site visitors' devices.",
+          "On your first visit you can choose, from the banner at the bottom of the page, whether to allow anonymous visit statistics or turn them off, and change your choice at any time by clearing this site's data from your browser.",
           "The site's fonts are self-hosted on our own servers: no data is sent to external services to display them.",
         ],
       },
@@ -150,6 +152,7 @@ export const privacyContent: Record<Locale, PrivacyContent> = {
         heading: "Cookies",
         body: [
           "El sitio público no utiliza cookies de perfilado ni de seguimiento publicitario. La única cookie presente es la técnica de sesión del área de administración reservada, no instalada en los dispositivos de los visitantes del sitio público.",
+          "En tu primera visita puedes elegir, desde el banner al pie de la página, si permitir las estadísticas de visita anónimas o desactivarlas, y cambiar tu elección en cualquier momento borrando los datos de este sitio en tu navegador.",
           "Las tipografías del sitio están alojadas directamente en nuestros servidores: no se transmite ningún dato a servicios externos para mostrarlas.",
         ],
       },
@@ -206,6 +209,7 @@ export const privacyContent: Record<Locale, PrivacyContent> = {
         heading: "Cookies",
         body: [
           "Le site public n'utilise pas de cookies de profilage ni de suivi publicitaire. Le seul cookie présent est le cookie technique de session de l'espace d'administration réservé, non installé sur les appareils des visiteurs du site public.",
+          "Lors de votre première visite, vous pouvez choisir, depuis la bannière en bas de page, d'autoriser les statistiques de visite anonymes ou de les désactiver, et modifier votre choix à tout moment en effaçant les données de ce site dans votre navigateur.",
           "Les polices du site sont hébergées directement sur nos serveurs : aucune donnée n'est transmise à des services externes pour leur affichage.",
         ],
       },

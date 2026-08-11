@@ -2,12 +2,15 @@
 
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
+import { getConsent } from "@/lib/cookie-consent";
 
 export default function PageViewTracker() {
   const pathname = usePathname();
 
   useEffect(() => {
     if (!pathname) return;
+    const consent = getConsent();
+    if (consent && !consent.analytics) return;
     const payload = JSON.stringify({ path: pathname });
     const sent = navigator.sendBeacon?.(
       "/api/track",
